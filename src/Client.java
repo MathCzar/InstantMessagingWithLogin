@@ -46,6 +46,7 @@ public class Client {
                         System.out.println("What is your password? (Type 'back' to go back)");
                         passwordAnswer = scanner.nextLine();
 
+                        //checks to see if the user wants to go back
                         if(usernameAnswer.equals("back")) {
 
                             continue;
@@ -55,20 +56,26 @@ public class Client {
 
 
                             try {
+                                //checks if the file is already there
+                                BufferedReader reader = new BufferedReader(new FileReader(usernameAnswer + passwordAnswer + ".txt"));
+
+                                //if the file is there the file will not be creates again
+                                System.out.println("Your username is already taken!");
+                            } catch (IOException e) {
+                                //if the file is not there it creates the file
                                 FileWriter fw = new FileWriter(usernameAnswer + passwordAnswer + ".txt");
                                 fw.close();
                                 System.out.println("You have registered successfully!");
-                            } catch (Exception e) { }
+                                loginPass = true;
+                            }
 
-                            loginPass = true;
+
 
                         }
 
                     }
 
-
-                    BufferedReader reader = new BufferedReader(new FileReader(usernameAnswer + passwordAnswer + ".txt"));
-                } catch (FileNotFoundException e) { loginPass = false; }
+                } catch (IOException e) { loginPass = false; }
 
             }
             //checks to see if the answer is "n"
