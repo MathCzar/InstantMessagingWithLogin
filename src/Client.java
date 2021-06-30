@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 
 public class Client {
@@ -54,6 +52,13 @@ public class Client {
 
                         }
                         else {
+
+
+                            try {
+                                FileWriter fw = new FileWriter(usernameAnswer + passwordAnswer + ".txt");
+                                fw.close();
+                                System.out.println("You have registered successfully!");
+                            } catch (Exception e) { }
 
                             loginPass = true;
 
